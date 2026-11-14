@@ -5,7 +5,7 @@ export const metadata = {
   description: "Pesquisa de campo e CRM para venda de seguro auto",
   manifest: "/manifest.webmanifest",
   appleWebApp: { capable: true, title: "Pesquisa", statusBarStyle: "default" },
-  icons: { icon: "/icon-192.png", apple: "/apple-touch-icon.png" },
+  icons: { icon: [{ url: "/favicon-32.png", sizes: "32x32" }, { url: "/icon-192.png", sizes: "192x192" }], apple: "/apple-touch-icon.png" },
   formatDetection: { telephone: false },
 };
 

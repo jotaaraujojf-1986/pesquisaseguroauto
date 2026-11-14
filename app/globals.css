@@ -220,3 +220,8 @@ tr.total td{font-weight:700}
 .banner-fila{position:sticky;top:0;z-index:12;background:var(--warm-soft);color:var(--warm);font-size:13px;padding:8px 12px;text-align:center;border-bottom:1px solid var(--line)}
 .side .foot{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
 button:disabled{cursor:not-allowed}
+
+.prog .mk.lim span{left:auto;right:0;transform:none}
+/* menu lateral sem barra de rolagem visível */
+.side{scrollbar-width:none;-ms-overflow-style:none}
+.side::-webkit-scrollbar{display:none;width:0;height:0}
