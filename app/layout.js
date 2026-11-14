@@ -17,7 +17,10 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "try{var t=localStorage.getItem('tema');if(t&&t!=='auto')document.documentElement.setAttribute('data-tema',t)}catch(e){}" }} />
+      </head>
       <body>{children}</body>
     </html>
   );
