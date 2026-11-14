@@ -302,3 +302,7 @@ header .acoes{display:flex;gap:6px;align-items:center}
 .lk-link{display:flex;gap:8px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px;word-break:break-all;margin:8px 0}
 .chk.nt{padding:10px 0;margin-top:0;border-top:1px solid var(--line)}
 .chk.nt input{margin-top:4px}
+/* verificação em duas etapas */
+.mfa-passo{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.mfa-qr{display:block;width:180px;height:180px;margin:12px auto 0;background:#fff;padding:8px;border-radius:12px}
+.mfa-cod{font-size:24px!important;letter-spacing:.35em;text-align:center;font-variant-numeric:tabular-nums}
