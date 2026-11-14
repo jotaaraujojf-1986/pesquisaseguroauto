@@ -306,3 +306,4 @@ header .acoes{display:flex;gap:6px;align-items:center}
 .mfa-passo{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
 .mfa-qr{display:block;width:180px;height:180px;margin:12px auto 0;background:#fff;padding:8px;border-radius:12px}
 .mfa-cod{font-size:24px!important;letter-spacing:.35em;text-align:center;font-variant-numeric:tabular-nums}
+.lk-ts{margin-top:14px;min-height:65px}
