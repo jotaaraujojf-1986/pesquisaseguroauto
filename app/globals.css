@@ -93,7 +93,7 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 .vb .c:hover i{opacity:.75}
 .vbx{display:flex;gap:3px;margin-top:4px}
 .vbx span{flex:1;text-align:center;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden}
-.tip{position:fixed;z-index:40;background:var(--ink);color:var(--bg);font-size:13px;padding:7px 10px;border-radius:8px;pointer-events:none;opacity:0;transition:opacity .1s;max-width:240px}
+.tip{position:fixed;z-index:95;background:var(--ink);color:var(--bg);font-size:13px;padding:7px 10px;border-radius:8px;pointer-events:none;opacity:0;transition:opacity .1s;max-width:240px}
 .tip.on{opacity:1}
 
 .proto{background:var(--ink);color:var(--bg);font-size:12px;text-align:center;padding:5px 10px}
@@ -172,19 +172,19 @@ th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04
 td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 tr.total td{font-weight:700}
 .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:10}
+.sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:70}
 .sheet{background:var(--card);width:100%;max-width:560px;max-height:88vh;max-height:88dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;border-radius:18px 18px 0 0;padding:18px 16px 30px}
 .sheet h2{margin:0;font-size:19px}
 .sheet ul{padding-left:18px;color:var(--muted);font-size:14px;margin:6px 0}
 .empty{text-align:center;color:var(--muted);padding:24px 10px}
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px;z-index:30}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px;z-index:80}
 .modal{background:var(--card);width:100%;max-width:380px;border-radius:18px;padding:22px 18px 18px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.3)}
 .modal h2{margin:8px 0 6px;font-size:19px}
 .modal p{margin:6px 0;font-size:15px;color:var(--muted)}
 .modal ul{list-style:none;padding:0;margin:6px 0 4px;color:var(--bad);font-size:16px}
 .modal ul li{margin:4px 0}
 .modal-ico{width:46px;height:46px;border-radius:50%;background:var(--bad-soft);color:var(--bad);font-size:26px;font-weight:800;line-height:46px;margin:0 auto}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:20}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:90}
 .toast.on{opacity:1}
 .result{text-align:center}
 .result h2{margin:10px 0 4px;font-size:22px}
@@ -272,3 +272,19 @@ header .acoes{display:flex;gap:6px;align-items:center}
   .hdr h1{font-size:16px}
   .pop-n{position:fixed;left:10px;right:10px;top:64px;width:auto}
 }
+/* ranking */
+.rk th,.rk td{white-space:nowrap;vertical-align:middle;padding-left:7px;padding-right:7px}
+.rk .rk-pos{width:28px;color:var(--muted);font-weight:700;text-align:center;padding-left:4px;padding-right:4px}
+.rk .rk-nome{position:sticky;left:0;background:var(--card);z-index:1;min-width:150px}
+.rk-u{display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--ink);font:inherit;text-align:left;padding:0;cursor:pointer;line-height:1.25}
+.rk-u b{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.rk-at{font-size:12px;color:var(--bad);font-weight:600}
+.rk-sort{border:0;background:none;font:inherit;color:inherit;text-transform:inherit;letter-spacing:inherit;padding:0;cursor:pointer;white-space:nowrap}
+.rk-sort.on{color:var(--accent);font-weight:700}
+.rk-sort:disabled{cursor:default}
+.rk td.rk-on{font-weight:700}
+.rk td.rk-ruim{color:var(--bad);background:var(--bad-soft)}
+.rk tr.rk-med td{color:var(--muted);font-weight:600;border-top:2px solid var(--line)}
+.rk-h{font-size:14px;margin:16px 0 6px}
+.rk-l{margin:0;padding-left:20px;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.rk-l.bad li::marker{color:var(--bad)}.rk-l.ok li::marker{color:var(--ok)}
