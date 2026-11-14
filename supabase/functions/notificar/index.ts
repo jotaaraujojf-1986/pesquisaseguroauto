@@ -69,6 +69,23 @@ async function crmNovo(id: string) {
   return n;
 }
 
+async function crmRepetido(id: string, por: string) {
+  const { data: c } = await sb.from("crm").select("*").eq("id", id).maybeSingle();
+  if (!c || c.excluido) return 0;
+  let nome = c.nome, leadId = c.id;
+  if (c.entrevista_id) {
+    const { data: e } = await sb.from("entrevistas").select("id,nome").eq("id", c.entrevista_id).maybeSingle();
+    if (e) { nome = e.nome; leadId = e.id; }
+  }
+  const quem = por ? await perfil(por) : null;
+  const via = quem?.papel === "admin" ? "pelo seu link" : `pelo link de ${primeiro(quem?.nome)}`;
+  return enviar((await admins()).filter((a) => quer(a, "quente")), {
+    title: "Lead pediu cotação de novo",
+    body: `${primeiro(nome)} já estava no funil e respondeu de novo ${via}.`,
+    url: "/?lead=" + leadId, tag: "rep-" + leadId,
+  });
+}
+
 async function venda(id: string) {
   const { data: c } = await sb.from("crm").select("*").eq("id", id).maybeSingle();
   if (!c || c.excluido || c.status !== "fechado") return 0;
@@ -126,6 +143,7 @@ Deno.serve(async (req) => {
     let n = 0;
     if (corpo.tipo === "crm_novo") n = await crmNovo(d.id);
     else if (corpo.tipo === "venda") n = await venda(d.id);
+    else if (corpo.tipo === "crm_repetido") n = await crmRepetido(d.id, d.por);
     else if (corpo.tipo === "dia_inicio") n = await dia(d.id, false);
     else if (corpo.tipo === "dia_fim") n = await dia(d.id, true);
     else if (corpo.tipo === "resumo") n = await resumo();
