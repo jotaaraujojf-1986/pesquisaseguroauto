@@ -1,6 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
+  metadataBase: new URL("https://pesquisa-seguro-auto.vercel.app"),
   title: "Pesquisa Seguro Auto",
   description: "Pesquisa de campo e CRM para venda de seguro auto",
   manifest: "/manifest.webmanifest",

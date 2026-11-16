@@ -307,3 +307,22 @@ header .acoes{display:flex;gap:6px;align-items:center}
 .mfa-qr{display:block;width:180px;height:180px;margin:12px auto 0;background:#fff;padding:8px;border-radius:12px}
 .mfa-cod{font-size:24px!important;letter-spacing:.35em;text-align:center;font-variant-numeric:tabular-nums}
 .lk-ts{margin-top:14px;min-height:65px}
+/* página do link v2 */
+.lk-top{align-items:center}
+.lk-top b{font-size:15px}
+.lk-quem{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);margin-bottom:10px}
+.lk-quem b{color:var(--ink)}
+.lk-av{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;display:inline-flex;align-items:center;justify-content:center}
+.lk-av-g{width:52px;height:52px}
+.lk-ini{background:var(--accent);color:#fff;font-weight:700;font-size:15px}
+.lk-cartao{display:flex;align-items:center;gap:12px}
+.lk-cartao b{font-size:16px;display:block}
+.lk-rot{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.lk-h{font-size:24px;line-height:1.2;margin:4px 0 8px}
+.lk-pt{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+.lk-animo{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.lk-ins{display:flex;gap:12px;align-items:flex-start;margin-top:12px;font-size:15px;line-height:1.4}
+.lk-ins b{display:block;font-size:16px;margin-bottom:2px}
+.lk-ck{width:30px;height:30px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.lk-pergunta{font-size:17px;font-weight:700;line-height:1.35;margin:14px 0 12px}
+.hb.ab .st{grid-template-columns:150px 1fr 70px}
