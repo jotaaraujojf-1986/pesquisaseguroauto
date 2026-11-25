@@ -369,3 +369,19 @@ span.av-emp{background:#5b6b7a;border:0}
   .pg-c dl>div{display:flex;justify-content:space-between;gap:8px;font-size:13px}
   .pg-c dt{color:var(--muted)} .pg-c dd{margin:0;font-variant-numeric:tabular-nums;white-space:nowrap}
 }
+.rp-cards{display:none}
+@media (max-width:760px){
+  .rp-tab{display:none}
+  .rp-cards{display:grid;gap:10px}
+  .rp-c{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer}
+  .rp-ch{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .rp-pos{width:16px;color:var(--muted);font-weight:700;text-align:center;flex:none}
+  .rp-ch b{overflow-wrap:anywhere}
+  .rp-dest{flex:none;text-align:right;line-height:1.15}
+  .rp-dest b{display:block;font-size:20px;color:var(--accent)}
+  .rp-dest span{font-size:11px;color:var(--muted)}
+  .rp-c dl{display:grid;grid-template-columns:1fr;gap:5px;margin:0;padding-top:8px;border-top:1px solid var(--line)}
+  .rp-c dl>div{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+  .rp-c dt{color:var(--muted)} .rp-c dd{margin:0;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .rp-c dl>div.ruim dd{color:var(--bad);font-weight:600}
+}
