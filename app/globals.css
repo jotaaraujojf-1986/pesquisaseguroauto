@@ -328,3 +328,12 @@ header .acoes{display:flex;gap:6px;align-items:center}
 .hb.ab .st{grid-template-columns:150px 1fr 70px}
 .lk-nao{display:block;width:100%;text-align:center;margin-top:12px;font-size:15px;color:var(--muted)}
 .lk-loovi{display:block;text-align:center;text-decoration:none;margin-top:16px}
+.lk-dica{font-size:13px;color:var(--ok);font-weight:600;text-align:center;margin-top:6px}
+.lk-desc{background:var(--ok-soft);color:var(--ink);border-radius:12px;padding:12px 14px;margin:12px 0 4px;font-size:14px;line-height:1.45;text-align:left}
+.lk-desc > b{display:block;color:var(--ok);font-size:16px;margin-bottom:2px}
+.lk-dlg-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}
+.lk-dlg{background:var(--card);border-radius:18px;padding:24px 20px 16px;max-width:380px;width:100%;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.lk-dlg h2{font-size:20px;margin:10px 0 6px;line-height:1.3}
+.lk-dlg p{font-size:15px;line-height:1.45;margin:0 0 10px;color:var(--ink)}
+.lk-dlg .lk-dlg-v{font-size:22px;font-weight:800;color:var(--ok);margin:4px 0 8px}
+.lk-dlg-ic{width:60px;height:60px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:inline-flex;align-items:center;justify-content:center}
