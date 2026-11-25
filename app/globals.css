@@ -357,3 +357,15 @@ span.av-emp{background:#5b6b7a;border:0}
 .tag-canal{flex:none;font-size:10px;font-weight:700;letter-spacing:.02em;padding:1px 6px;border-radius:999px;text-transform:uppercase}
 .tag-canal.rua{background:var(--accent-soft);color:var(--accent)}
 .tag-canal.link{background:var(--link-soft);color:var(--link)}
+.pg-tab td.n,.pg-tab th.n{white-space:nowrap}
+.pg-cards{display:none}
+@media (max-width:760px){
+  .pg-tab{display:none}
+  .pg-cards{display:grid;gap:10px}
+  .pg-c{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg)}
+  .pg-c.tot{background:var(--accent-soft);border-color:transparent}
+  .pg-h{display:flex;justify-content:space-between;gap:10px;font-size:15px;margin-bottom:8px}
+  .pg-c dl{display:grid;grid-template-columns:1fr;gap:5px;margin:0}
+  .pg-c dl>div{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+  .pg-c dt{color:var(--muted)} .pg-c dd{margin:0;font-variant-numeric:tabular-nums;white-space:nowrap}
+}
