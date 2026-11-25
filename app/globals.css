@@ -337,3 +337,6 @@ header .acoes{display:flex;gap:6px;align-items:center}
 .lk-dlg p{font-size:15px;line-height:1.45;margin:0 0 10px;color:var(--ink)}
 .lk-dlg .lk-dlg-v{font-size:22px;font-weight:800;color:var(--ok);margin:4px 0 8px}
 .lk-dlg-ic{width:60px;height:60px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:inline-flex;align-items:center;justify-content:center}
+.lk-premio{display:flex;gap:12px;align-items:flex-start;background:var(--ok-soft);border-color:transparent;font-size:15px;line-height:1.4}
+.lk-premio b{display:block;font-size:16px;color:var(--ok);margin-bottom:2px}
+.lk-premio-ic{width:44px;height:44px;flex:none;background:var(--card)}
