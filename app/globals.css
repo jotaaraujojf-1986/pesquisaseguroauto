@@ -52,8 +52,8 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 .side nav button.grp.aberto .seta{transform:rotate(90deg)}
 .side nav .sub{display:none;flex-direction:column;gap:2px;margin:2px 0 6px}
 .side nav .sub.aberto{display:flex}
-.side nav .sub button{padding:8px 12px 8px 22px;font-size:14px}
-.side nav .sub button svg{width:16px;height:16px}
+.side nav .sub button{padding:8px 12px 8px 40px;font-size:14px;color:var(--muted)}
+.side nav .sub button.on{color:var(--accent)}
 .side nav .sub button:hover:not(.on){background:var(--bg);color:var(--accent)}
 .side nav button{display:flex;gap:10px;align-items:center;width:100%;padding:10px 12px;border-radius:10px;border:0;background:none;font:inherit;font-size:15px;color:var(--ink);text-align:left}
 .side nav button svg{width:18px;height:18px;flex:none;stroke:var(--muted)}
