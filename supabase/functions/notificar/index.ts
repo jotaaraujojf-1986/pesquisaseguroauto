@@ -54,6 +54,9 @@ async function crmNovo(id: string) {
   } else if (c.origem === "link") {
     quem = c.entrevistador_id ? await perfil(c.entrevistador_id) : null;
     via = quem?.papel === "admin" ? "pelo seu link" : `pelo link de ${primeiro(quem?.nome)}`;
+  } else if (c.origem === "parceiro") {
+    const { data: pa } = await sb.from("parceiros").select("nome").eq("id", c.parceiro_id).maybeSingle();
+    via = `indicado por ${pa?.nome || "parceiro"}`;
   } else return 0;
   const quente = classe === "quente";
   let n = 0;
@@ -78,7 +81,8 @@ async function crmRepetido(id: string, por: string) {
     if (e) { nome = e.nome; leadId = e.id; }
   }
   const quem = por ? await perfil(por) : null;
-  const via = quem?.papel === "admin" ? "pelo seu link" : `pelo link de ${primeiro(quem?.nome)}`;
+  let via = quem?.papel === "admin" ? "pelo seu link" : `pelo link de ${primeiro(quem?.nome)}`;
+  if (!por) via = "pelo link de um parceiro";
   return enviar((await admins()).filter((a) => quer(a, "quente")), {
     title: "Lead pediu cotação de novo",
     body: `${primeiro(nome)} já estava no funil e respondeu de novo ${via}.`,
@@ -88,17 +92,17 @@ async function crmRepetido(id: string, por: string) {
 
 async function venda(id: string) {
   const { data: c } = await sb.from("crm").select("*").eq("id", id).maybeSingle();
-  if (!c || c.excluido || c.status !== "fechado") return 0;
-  let uid = c.origem === "link" ? c.entrevistador_id : null, via = "de quem respondeu pelo seu link";
+  if (!c || c.excluido || !c.mensalidade_paga_em) return 0;
+  let uid = c.origem === "link" ? c.entrevistador_id : null, via = "que respondeu pelo seu link";
   if (c.origem === "pesquisa") {
     const { data: e } = await sb.from("entrevistas").select("user_id,dia").eq("id", c.entrevista_id).maybeSingle();
-    uid = e?.user_id; via = "de uma entrevista sua";
+    uid = e?.user_id; via = "que você entrevistou";
   }
   if (!uid) return 0;
   const p = await perfil(uid);
   if (!p || p.papel !== "entrevistador" || !quer(p, "venda")) return 0;
   const { data: conf } = await sb.from("config").select("comissao").eq("id", 1).single();
-  return enviar([p], { title: "Venda fechada! 🎉", body: `Fechou a venda ${via}. Você ganhou ${brl(+(conf?.comissao || 0))} de comissão.`, url: "/?aba=ganhos", tag: "venda-" + c.id });
+  return enviar([p], { title: "Comissão liberada! 🎉", body: `O cliente ${via} pagou a 1ª mensalidade. Você ganhou ${brl(+(conf?.comissao || 0))} de comissão.`, url: "/?aba=ganhos", tag: "venda-" + c.id });
 }
 
 async function dia(id: string, fim: boolean) {

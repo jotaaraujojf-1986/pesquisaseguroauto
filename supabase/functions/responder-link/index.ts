@@ -29,7 +29,8 @@ Deno.serve(async (req) => {
     }
   }
 
-  const { error } = await sb.rpc("responder_link_srv", { p_slug: String(corpo.slug || ""), p: corpo.p || {}, p_ip: ip });
+  const fn = corpo.parceiro ? "responder_parceiro_srv" : "responder_link_srv";
+  const { error } = await sb.rpc(fn, { p_slug: String(corpo.slug || ""), p: corpo.p || {}, p_ip: ip });
   if (error) return json({ ok: false, erro: MSG_USUARIO.test(error.message) ? error.message : "Não foi possível enviar agora. Tente de novo em instantes." });
   return json({ ok: true });
 });
