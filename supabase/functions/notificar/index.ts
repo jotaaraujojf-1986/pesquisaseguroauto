@@ -57,10 +57,10 @@ async function crmNovo(id: string) {
   } else return 0;
   const quente = classe === "quente";
   let n = 0;
-  const destino = (await admins()).filter((a) => quer(a, quente ? "quente" : "outros") && !(c.origem === "pesquisa" && quem?.id === a.id));
+  const destino = (await admins()).filter((a) => quer(a, quente || c.cotacao_online ? "quente" : "outros") && !(c.origem === "pesquisa" && quem?.id === a.id));
   n += await enviar(destino, {
-    title: quente ? "Novo lead quente 🔥" : `Novo lead (${classe || "morno"})`,
-    body: `${primeiro(nome)}${carro ? " · " + carro : ""} · ${via}`,
+    title: c.cotacao_online ? "Novo lead: foi cotar na Loovi" : quente ? "Novo lead quente 🔥" : `Novo lead (${classe || "morno"})`,
+    body: `${primeiro(nome)}${carro ? " · " + carro : ""} · ${via}${c.cotacao_online ? " · confira no Escritório Virtual" : ""}`,
     url: "/?lead=" + leadId, tag: "lead-" + leadId,
   });
   if (c.origem === "link" && quem?.papel === "entrevistador" && quer(quem, "link")) {
