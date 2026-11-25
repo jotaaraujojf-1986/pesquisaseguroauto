@@ -3,7 +3,7 @@
   --accent:#0f766e; --accent-ink:#fff; --accent-soft:#e6f4f2;
   --hot:#c2410c; --hot-soft:#fff1e8; --warm:#a16207; --warm-soft:#fdf6e3; --cold:#3b5b85; --cold-soft:#eaf0f8;
   --ok:#15803d; --ok-soft:#e8f6ec; --bad:#b91c1c; --bad-soft:#fdecec; --gold:#b45309; --gold-soft:#fef3c7;
-  --say:#fffbe8; --say-line:#ecd98a;
+  --say:#fffbe8; --say-line:#ecd98a; --link:#6d4fc4; --link-soft:#efebfb;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-tema="claro"]){
@@ -11,7 +11,7 @@
     --accent:#2bb3a3; --accent-ink:#06201d; --accent-soft:#163331;
     --hot:#fb8b54; --hot-soft:#3a2216; --warm:#e3b341; --warm-soft:#33290f; --cold:#8fb2e3; --cold-soft:#1b2636;
     --ok:#4ade80; --ok-soft:#14301f; --bad:#f87171; --bad-soft:#3a1717; --gold:#fbbf24; --gold-soft:#3a2c0c;
-    --say:#2a2614; --say-line:#5c5124;
+    --say:#2a2614; --say-line:#5c5124; --link:#b3a4f5; --link-soft:#2a2440;
     color-scheme:dark;
   }
 }
@@ -20,7 +20,7 @@
     --accent:#2bb3a3; --accent-ink:#06201d; --accent-soft:#163331;
     --hot:#fb8b54; --hot-soft:#3a2216; --warm:#e3b341; --warm-soft:#33290f; --cold:#8fb2e3; --cold-soft:#1b2636;
     --ok:#4ade80; --ok-soft:#14301f; --bad:#f87171; --bad-soft:#3a1717; --gold:#fbbf24; --gold-soft:#3a2c0c;
-    --say:#2a2614; --say-line:#5c5124;
+    --say:#2a2614; --say-line:#5c5124; --link:#b3a4f5; --link-soft:#2a2440;
   color-scheme:dark;
 }
 :root[data-tema="claro"]{color-scheme:light}
@@ -351,3 +351,9 @@ tr.pc-on td{font-weight:700;background:var(--accent-soft)}
 .av-emp{border-radius:12px;object-fit:cover;background:#fff;border:1px solid var(--line)}
 span.av-emp{background:#5b6b7a;border:0}
 .lk-emp-img{border-radius:10px;object-fit:cover;background:#fff;border:1px solid var(--line)}
+.av-xs{width:18px;height:18px;font-size:9px}
+.kc-ent{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:13px;font-weight:600;min-width:0}
+.kc-ent>span:not(.av){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tag-canal{flex:none;font-size:10px;font-weight:700;letter-spacing:.02em;padding:1px 6px;border-radius:999px;text-transform:uppercase}
+.tag-canal.rua{background:var(--accent-soft);color:var(--accent)}
+.tag-canal.link{background:var(--link-soft);color:var(--link)}
