@@ -738,3 +738,17 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
   .hamb-d{display:grid}
   body.menu-rec .side{display:none}
 }
+
+/* cartão do lead organizado em seções */
+.ld-sec{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.ld-sec h3{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.ld-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;margin:0}
+.ld-kv>div{min-width:0}
+.ld-kv dt{font-size:12px;color:var(--muted)}
+.ld-kv dd{margin:1px 0 0;font-size:15px;font-weight:600;overflow-wrap:anywhere}
+.ld-nota,.ld-resp{font-size:14px;margin:6px 0}
+.ld-obs{font-size:14px;margin-bottom:8px}
+.ld-det summary{cursor:pointer;font-size:14px;color:var(--accent);font-weight:600}
+.ld-acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.ld-acoes .btn{flex:1 1 auto}
+.ld-sec .grid2 .f{margin-top:0}
