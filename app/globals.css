@@ -778,3 +778,8 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 .ld-acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
 .ld-acoes .btn{flex:1 1 auto}
 .ld-sec .grid2 .f{margin-top:0}
+/* equipe do parceiro */
+.eq-bloco{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.eq-t{display:flex;flex-direction:column;gap:2px;margin-bottom:6px}
+.eq-it{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.eq-ac{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
