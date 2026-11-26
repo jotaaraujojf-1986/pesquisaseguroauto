@@ -741,7 +741,17 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 
 /* cartão do lead organizado em seções */
 .ld-sec{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
-.ld-sec h3{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.ld-sec summary{display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none;padding:2px 0;min-height:30px}
+.ld-sec summary::-webkit-details-marker{display:none}
+.ld-sec h3{margin:0;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.ld-res{flex:1;min-width:0;text-align:right;font-size:13px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ld-sec[open] .ld-res{display:none}
+.ld-sec[open] summary{flex-wrap:nowrap}
+.ld-sec summary::after{content:none}
+.ld-sec summary .seta{width:18px;height:18px;flex:none;margin-left:auto;color:var(--muted);transition:transform .15s}
+.ld-res+.seta{margin-left:0}
+.ld-sec[open] summary .seta{transform:rotate(90deg)}
+.ld-corpo{padding-top:8px}
 .ld-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;margin:0}
 .ld-kv>div{min-width:0}
 .ld-kv dt{font-size:12px;color:var(--muted)}
