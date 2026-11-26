@@ -685,3 +685,14 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 /* botão de cadastro no topo (Equipe e Parceiros) */
 .topo-acao{display:flex;justify-content:flex-end;margin:0 0 12px}
 @media (max-width:560px){.topo-acao .btn{width:100%;min-height:46px}}
+
+/* regras recolhíveis (Pagamentos) */
+.rec{padding:0}
+.rec-h{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;font:inherit;color:inherit;text-align:left;padding:14px 16px;cursor:pointer;border-radius:inherit}
+.rec-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.rec-t b{font-size:17px}
+.rec-t .meta{font-size:13px}
+.rec-h .seta{width:20px;height:20px;flex:none;color:var(--muted);transition:transform .15s}
+.rec.aberto .rec-h .seta{transform:rotate(90deg)}
+.rec-b{display:none;padding:0 16px 16px;border-top:1px solid var(--line)}
+.rec.aberto .rec-b{display:block;padding-top:12px}
