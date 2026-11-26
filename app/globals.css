@@ -631,3 +631,32 @@ span.av-emp{background:#5b6b7a;border:0}
   .ar-mais.ar-i-lead{display:grid}
   .ar-modo{margin-left:4px}
 }
+
+/* Ari · conversas: a página não rola, só lista, mensagens e dados do lead */
+body.ar-fit{overflow:hidden}
+body.ar-fit .adm{height:100dvh;min-height:0;overflow:hidden}
+body.ar-fit .adm-main{height:100dvh;min-height:0;overflow:hidden;display:flex;flex-direction:column;padding-bottom:14px}
+body.ar-fit .adm-main>*{flex:none}
+body.ar-fit .adm-main>.ar-conv{flex:1 1 auto;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}
+body.ar-fit .ar-lista{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+body.ar-fit .ar-lista>*{flex:none}
+body.ar-fit .ar-lista>.ar-cis{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto;overscroll-behavior:contain}
+body.ar-fit .ar-aberta{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+body.ar-fit .ar-aberta>*{flex:none}
+body.ar-fit .ar-aberta>.ar-msgs{flex:1 1 auto;height:auto;min-height:0;margin-top:12px;overscroll-behavior:contain}
+body.ar-fit .ar-lead{min-height:0;overflow-y:auto;overscroll-behavior:contain}
+body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
+@media (min-width:761px){
+  body.ar-fit .adm-main>.ar-conv>*{min-height:0}
+}
+/* celular: rolagem por dentro, sem barra visível */
+@media (max-width:760px){
+  body.ar-fit .adm-main{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  body.ar-fit .ar-cis,body.ar-fit .ar-aberta .ar-msgs,.ar-lead.aberto{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+  body.ar-fit .ar-cis::-webkit-scrollbar,body.ar-fit .ar-aberta .ar-msgs::-webkit-scrollbar,.ar-lead.aberto::-webkit-scrollbar{display:none}
+  body.ar-fit .ar-lista{padding:0}
+  body.ar-fit .ar-aberta>.ar-msgs{margin-top:0}
+  /* barra do rodapé mais acima, livre do gesto do iPhone */
+  .ar-bnav{padding:8px 2px calc(18px + env(safe-area-inset-bottom))}
+  body.ar-com-bnav:not(.ar-fit) .adm-main{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+}
