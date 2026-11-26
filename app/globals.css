@@ -734,10 +734,10 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 /* menu lateral recolhível: faixa só com ícones */
 .side-tgl{display:none}
 @media (min-width:861px){
-  .side-tgl{display:grid;place-items:center;position:fixed;left:calc(236px - 14px);top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;z-index:16;padding:0;opacity:.9;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:opacity .15s,color .15s,left .15s}
-  .side-tgl:hover,.side-tgl:focus-visible{opacity:1;color:var(--accent)}
-  .side-tgl svg{width:16px;height:16px}
-  body.menu-rec .side-tgl{left:calc(72px - 14px)}
+  .side-tgl{display:grid;place-items:center;position:fixed;left:calc(236px - 1px);top:50%;transform:translateY(-50%);width:18px;height:60px;border-radius:0 12px 12px 0;border:1px solid var(--line);border-left:0;background:var(--card);color:var(--muted);cursor:pointer;z-index:16;padding:0;opacity:.95;box-shadow:3px 0 8px rgba(0,0,0,.08);transition:color .15s,background .15s,left .15s}
+  .side-tgl:hover,.side-tgl:focus-visible{color:var(--accent);background:var(--accent-soft)}
+  .side-tgl svg{width:14px;height:14px}
+  body.menu-rec .side-tgl{left:calc(72px - 1px)}
   body.menu-rec .side{width:72px;padding:14px 8px;overflow:hidden}
   body.menu-rec .side .brand{padding:4px 0 12px;margin-bottom:8px}
   body.menu-rec .side .brand img{width:40px;height:40px;border-radius:11px}
