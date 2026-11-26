@@ -731,13 +731,29 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 /* cartões lado a lado: cada um com a própria altura */
 .grid2.cards-alt{align-items:start}
 
-/* menu lateral recolhível no computador */
-.hamb-d{display:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;width:42px;height:42px;flex:none;place-items:center;cursor:pointer}
-.hamb-d svg{width:20px;height:20px}
+/* menu lateral recolhível: faixa só com ícones */
+.side-tgl{display:none}
 @media (min-width:861px){
-  .hamb-d{display:grid}
-  body.menu-rec .side{display:none}
+  .side-tgl{display:grid;place-items:center;position:fixed;left:calc(236px - 12px);top:22px;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;z-index:16;padding:0;opacity:.75;transition:opacity .15s,color .15s,left .15s}
+  .side-tgl:hover,.side-tgl:focus-visible{opacity:1;color:var(--accent)}
+  .side-tgl svg{width:14px;height:14px}
+  body.menu-rec .side-tgl{left:calc(72px - 12px)}
+  body.menu-rec .side{width:72px;padding:14px 8px;overflow:hidden}
+  body.menu-rec .side .brand{padding:4px 0 12px;margin-bottom:8px}
+  body.menu-rec .side .brand img{width:40px;height:40px;border-radius:11px}
+  body.menu-rec .side .brand b,body.menu-rec .side .brand span,body.menu-rec .side .foot{display:none}
+  body.menu-rec .side nav button.grp{position:relative;justify-content:center;padding:12px 0}
+  body.menu-rec .side nav button.grp>span,body.menu-rec .side nav button.grp .seta{display:none}
+  body.menu-rec .side nav button.grp svg{width:21px;height:21px}
+  body.menu-rec .side nav button.grp .cnt{display:block;position:absolute;top:8px;right:14px;width:9px;height:9px;padding:0;font-size:0;background:var(--hot)}
+  body.menu-rec .side nav .sub{display:none!important}
 }
+.rail-fly{position:fixed;left:80px;z-index:40;min-width:200px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:8px}
+.rail-fly .rf-t{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:6px 12px 8px}
+.rail-fly button{display:block;width:100%;text-align:left;padding:9px 12px;border:0;border-radius:9px;background:none;font:inherit;font-size:14.5px;color:var(--ink);cursor:pointer}
+.rail-fly button:hover:not(.on){background:var(--bg);color:var(--accent)}
+.rail-fly button.on{background:var(--accent-soft);color:var(--accent);font-weight:700}
+@media (max-width:860px){.rail-fly{display:none}}
 
 /* cartão do lead organizado em seções */
 .ld-sec{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
