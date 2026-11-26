@@ -671,3 +671,13 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
   .ar-estado{border-radius:999px;border:0;background-color:var(--card);padding:11px 36px 11px 16px;font-size:16px}
   .ar-tchip{border-radius:999px}
 }
+
+/* Ari · janela de 24h */
+.ar-jan{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap;font-variant-numeric:tabular-nums;background:var(--accent-soft);color:var(--accent)}
+.ar-jan-perto{background:var(--warm-soft);color:var(--warm)}
+.ar-jan-fim{background:color-mix(in srgb,var(--bad) 14%,var(--card));color:var(--bad)}
+.ar-jan-sem{background:var(--bg);color:var(--muted);font-weight:500}
+.ar-janela{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.ar-janela .meta{font-size:12px}
+@media (max-width:760px){.ar-janela{margin:0;padding:6px 12px;background:var(--card);border-bottom:1px solid var(--line)}.ar-janela .meta{display:none}}
+@media (max-width:760px){.ar-ci-l3 .ar-jan{font-size:10px;padding:1px 7px}}
