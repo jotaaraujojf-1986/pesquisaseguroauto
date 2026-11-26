@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Painel do funcionário",
+  title: "Painel do colaborador",
   robots: { index: false, follow: false },
   referrer: "no-referrer",
   manifest: null,

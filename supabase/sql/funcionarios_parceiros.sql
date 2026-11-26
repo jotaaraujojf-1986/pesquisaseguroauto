@@ -1,4 +1,4 @@
--- Funcionários de parceiros: link próprio, valor fixo por venda confirmada, pago direto no PIX.
+-- Colaboradores de parceiros: link próprio, valor fixo por venda confirmada, pago direto no PIX.
 -- O parceiro continua com a bonificação normal do nível sobre TODAS as vendas da equipe.
 
 create table if not exists public.parceiro_funcionarios (
@@ -24,7 +24,7 @@ alter table public.crm add column if not exists func_bonus_valor numeric(10,2);
 alter table public.crm add column if not exists func_bonus_pago_em date;
 create index if not exists crm_funcionario_idx on public.crm(funcionario_id) where funcionario_id is not null;
 
--- Ao confirmar a 1ª mensalidade, congela o valor do funcionário (o valor configurado naquele momento).
+-- Ao confirmar a 1ª mensalidade, congela o valor do colaborador (o valor configurado naquele momento).
 create or replace function public.crm_mensalidade() returns trigger
  language plpgsql security definer set search_path to 'public' as $function$
 declare v int; q int;
@@ -47,7 +47,7 @@ begin
     end if;
   elsif new.mensalidade_paga_em is null and old.mensalidade_paga_em is not null then
     if old.bonus_pago_em is not null then raise exception 'A bonificação desta venda já foi paga ao parceiro.'; end if;
-    if old.func_bonus_pago_em is not null then raise exception 'O bônus do funcionário desta venda já foi pago.'; end if;
+    if old.func_bonus_pago_em is not null then raise exception 'O bônus do colaborador desta venda já foi pago.'; end if;
     new.bonus_valor := null; new.bonus_nivel := null; new.func_bonus_valor := null;
   end if;
   return new;
