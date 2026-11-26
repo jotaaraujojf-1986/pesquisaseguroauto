@@ -727,3 +727,6 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 .rc-logo .rc-mask{border-radius:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
 .rc-zoom{display:flex;align-items:center;gap:10px;margin:12px auto 0;max-width:300px;font-size:20px;color:var(--muted)}
 .rc-zoom input{flex:1;padding:0;accent-color:var(--accent)}
+
+/* cartões lado a lado: cada um com a própria altura */
+.grid2.cards-alt{align-items:start}
