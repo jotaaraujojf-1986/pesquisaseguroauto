@@ -716,3 +716,14 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 .topo-acao .btn{flex:none}
 @media (max-width:560px){.topo-acao{flex-direction:column-reverse;align-items:stretch}.busca-cards{max-width:none}}
 .card[hidden],.busca-vazio[hidden]{display:none!important}
+
+/* ajuste manual de foto */
+.rc-wrap{display:flex;justify-content:center}
+.rc-stage{position:relative;width:min(300px,78vw);aspect-ratio:1;overflow:hidden;background:#fff;border-radius:14px;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.rc-stage:active{cursor:grabbing}
+.rc-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rc-mask{position:absolute;inset:0;pointer-events:none;border:2px solid rgba(255,255,255,.9)}
+.rc-pessoa .rc-mask{border-radius:50%;box-shadow:0 0 0 400px rgba(0,0,0,.55);border-color:#fff}
+.rc-logo .rc-mask{border-radius:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.rc-zoom{display:flex;align-items:center;gap:10px;margin:12px auto 0;max-width:300px;font-size:20px;color:var(--muted)}
+.rc-zoom input{flex:1;padding:0;accent-color:var(--accent)}
