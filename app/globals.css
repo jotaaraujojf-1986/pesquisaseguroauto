@@ -730,3 +730,11 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 
 /* cartões lado a lado: cada um com a própria altura */
 .grid2.cards-alt{align-items:start}
+
+/* menu lateral recolhível no computador */
+.hamb-d{display:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;width:42px;height:42px;flex:none;place-items:center;cursor:pointer}
+.hamb-d svg{width:20px;height:20px}
+@media (min-width:861px){
+  .hamb-d{display:grid}
+  body.menu-rec .side{display:none}
+}
