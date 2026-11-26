@@ -702,3 +702,10 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 .pa-end svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--accent)}
 .pa-end a{font-weight:600;color:var(--accent)}
 .pa-end.sem{align-items:center}
+
+/* cartões: métricas à vista, o resto recolhido */
+.det-b{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;margin-top:12px;padding:10px 2px 0;background:none;border:0;border-top:1px solid var(--line);font:inherit;font-size:14px;font-weight:600;color:var(--accent);cursor:pointer}
+.det-b .seta{width:18px;height:18px;transition:transform .15s}
+.det.aberto .det-b .seta{transform:rotate(90deg)}
+.det-c{display:none;padding-top:8px}
+.det.aberto .det-c{display:block}
