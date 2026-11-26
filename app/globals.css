@@ -696,3 +696,9 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 .rec.aberto .rec-h .seta{transform:rotate(90deg)}
 .rec-b{display:none;padding:0 16px 16px;border-top:1px solid var(--line)}
 .rec.aberto .rec-b{display:block;padding-top:12px}
+
+/* endereço do parceiro */
+.pa-end{display:flex;gap:8px;align-items:flex-start;margin:10px 0 4px;font-size:14px;line-height:1.4}
+.pa-end svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--accent)}
+.pa-end a{font-weight:600;color:var(--accent)}
+.pa-end.sem{align-items:center}

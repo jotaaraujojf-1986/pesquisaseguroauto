@@ -9,7 +9,7 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   `img-src 'self' data: blob: ${SUPABASE}`,
   "font-src 'self' data:",
-  `connect-src 'self' ${SUPABASE} wss://aseiiogpqmnfewlbbmun.supabase.co ${CLOUDFLARE}`,
+  `connect-src 'self' ${SUPABASE} wss://aseiiogpqmnfewlbbmun.supabase.co ${CLOUDFLARE} https://viacep.com.br`,
   `frame-src ${CLOUDFLARE}`,
   "worker-src 'self'",
   "manifest-src 'self'",
