@@ -14,14 +14,16 @@ const json = (o: unknown, status = 200) => new Response(JSON.stringify(o), { sta
 const MODELOS: Record<string, { entrada: number; saida: number; cacheLe: number; cacheGrava: number }> = {
   // US$ por milhão de tokens (estimativa usada só para mostrar o custo no painel)
   "claude-sonnet-5-5": { entrada: 2, saida: 10, cacheLe: 0.1, cacheGrava: 2.5 },
-  "claude-haiku-5-5": { entrada: 0.1, saida: 0.5, cacheLe: 0.005, cacheGrava: 0.125 },
+  "claude-haiku-5-5": { entrada: 0.1, saida: 0.5, cacheLe: 0.01, cacheGrava: 0.125 },
 };
 
 const FERRAMENTAS = [
   { name: "buscar_documentos", description: "Busca trechos nos documentos oficiais em uso (contrato Loovi, regras de utilização, condições gerais LTI e outros que o Jota enviou). Use palavras-chave em português.", input_schema: { type: "object", properties: { consulta: { type: "string" } }, required: ["consulta"] } },
   { name: "consultar_veiculo", description: "Verifica se a marca/modelo aparece na lista de Veículos Restritos ou na Tabela de Veículos Diferenciados.", input_schema: { type: "object", properties: { marca: { type: "string" }, modelo: { type: "string" } }, required: ["marca", "modelo"] } },
   { name: "enviar_link_cotacao", description: "Devolve o link oficial de cotação do Jota.", input_schema: { type: "object", properties: {} } },
-  { name: "passar_para_jota", description: "Passa o lead para o Jota. Preencha resumo com a intenção, a dúvida exata e o que já foi respondido.", input_schema: { type: "object", properties: { nome: { type: "string" }, resumo: { type: "string" }, observacoes: { type: "string" } }, required: ["resumo"] } },
+  { name: "passar_para_jota", description: "Passa o lead para o Jota. Preencha resumo com a intenção, a dúvida exata e o que já foi respondido.", input_schema: { type: "object", properties: { nome: { type: "string" }, resumo: { type: "string" }, observacoes: { type: "string" }, temperatura: { type: "string", enum: ["quente", "morno", "frio"] } }, required: ["resumo"] } },
+  { name: "anotar_dados", description: "Anota os dados que o cliente informou (só os que ele disse). Chame sempre que surgir um dado novo.", input_schema: { type: "object", properties: { nome: { type: "string", description: "como o cliente se chama" }, nome_completo: { type: "string" }, veiculo: { type: "string", description: "marca, modelo e ano" }, placa: { type: "string" }, uso: { type: "string", description: "particular, aplicativo, táxi, trabalho..." }, seguro_atual: { type: "string", description: "se tem seguro hoje e quando vence" }, cidade: { type: "string" }, uf: { type: "string" }, cpf: { type: "string" }, email: { type: "string" }, cep: { type: "string" }, endereco: { type: "string" }, temperatura: { type: "string", enum: ["quente", "morno", "frio"] } } } },
+  { name: "registrar_pergunta", description: "Registra uma dúvida de produto que você não conseguiu responder com segurança, para o Jota responder e ensinar.", input_schema: { type: "object", properties: { pergunta: { type: "string", description: "a pergunta exata do cliente" } }, required: ["pergunta"] } },
   { name: "avisar_jota", description: "Avisa o Jota (notificação) sem passar a conversa, quando um lead quente tirou uma dúvida que você respondeu.", input_schema: { type: "object", properties: { motivo: { type: "string" }, resumo: { type: "string" } }, required: ["resumo"] } },
   { name: "apagar_dados", description: "Apaga os dados do cliente após ele confirmar com APAGAR.", input_schema: { type: "object", properties: {} } },
 ];
@@ -67,7 +69,7 @@ async function gerar(chave: string, conversa: { role: string; content: string }[
   const agora = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", weekday: "long", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
   const system = [
     { type: "text", text: (cfg.instrucoes || "") + aprovadas, cache_control: { type: "ephemeral" } },
-    { type: "text", text: `Horário de atendimento do Jota: ${cfg.hora_ini ?? 8}h às ${cfg.hora_fim ?? 19}h.\nHORA ATUAL (Brasília): ${agora}.` + extraSistema },
+    { type: "text", text: `Horário de atendimento do Jota: ${cfg.hora_ini ?? 8}h às ${cfg.hora_fim ?? 19}h.\nHORA ATUAL (Brasília): ${agora}.` + (cfg.msg_fora ? `\nFora do horário, avise o próximo passo com esta mensagem (pode adaptar o tom): ${cfg.msg_fora}` : "") + extraSistema },
   ];
   const msgs: any[] = conversa.map((m) => ({ role: m.role, content: m.content }));
   const eventos: any[] = [], efeitos: any[] = [];
@@ -115,6 +117,13 @@ async function gerar(chave: string, conversa: { role: string; content: string }[
       } else if (u.name === "avisar_jota") {
         efeitos.push({ tipo: "avisar", ...e });
         eventos.push({ tipo: "avisar", texto: "Avisou o Jota: " + (e.motivo || "lead quente"), detalhe: e.resumo || "" });
+      } else if (u.name === "anotar_dados") {
+        efeitos.push({ tipo: "dados", ...e });
+        const rot: Record<string, string> = { nome: "nome", nome_completo: "nome completo", veiculo: "veículo", placa: "placa", uso: "uso", seguro_atual: "seguro atual", cidade: "cidade", uf: "UF", cpf: "CPF", email: "e-mail", cep: "CEP", endereco: "endereço", temperatura: "temperatura" };
+        eventos.push({ tipo: "dados", texto: "Anotou: " + Object.keys(e).filter((k) => e[k] && rot[k]).map((k) => rot[k]).join(", ") });
+      } else if (u.name === "registrar_pergunta") {
+        efeitos.push({ tipo: "pergunta", pergunta: String(e.pergunta || "").slice(0, 500) });
+        eventos.push({ tipo: "pergunta", texto: "Registrou a pergunta para você responder: “" + String(e.pergunta || "").slice(0, 120) + "”" });
       } else if (u.name === "apagar_dados") {
         efeitos.push({ tipo: "apagar" });
         eventos.push({ tipo: "apagar", texto: "Cliente confirmou que quer apagar os dados" });
@@ -150,10 +159,10 @@ Deno.serve(async (req) => {
   try { corpo = await req.json(); } catch { return json({ erro: "Envio inválido." }, 400); }
 
   const [{ data: aj }, { data: cf }] = await Promise.all([
-    srv.from("ari_ajustes").select("instrucoes, modelo, hora_ini, hora_fim").eq("id", 1).single(),
+    srv.from("ari_ajustes").select("instrucoes, modelo, hora_ini, hora_fim, msg_fora").eq("id", 1).single(),
     srv.from("config").select("loovi_link").eq("id", 1).single(),
   ]);
-  const cfg = { instrucoes: aj?.instrucoes, hora_ini: aj?.hora_ini, hora_fim: aj?.hora_fim, loovi_link: cf?.loovi_link };
+  const cfg = { instrucoes: aj?.instrucoes, hora_ini: aj?.hora_ini, hora_fim: aj?.hora_fim, msg_fora: aj?.msg_fora, loovi_link: cf?.loovi_link };
   if (!cfg.instrucoes) return json({ erro: "As instruções do Ari estão vazias. Preencha em Ajustes." }, 400);
   const modelo = MODELOS[corpo.modelo] ? corpo.modelo : (aj?.modelo || "claude-sonnet-5-5");
 
@@ -165,6 +174,7 @@ Deno.serve(async (req) => {
     const r: any = await gerar(chave, conversa, modelo, cfg);
     if (r.erro) return json(r, 502);
     await srv.from("ari_uso").insert({ origem: "teste", modelo, tokens_entrada: r.uso.entrada + r.uso.cacheGrava, tokens_cache: r.uso.cache, tokens_saida: r.uso.saida, custo_usd: r.uso.custo_usd.toFixed(5) });
+    for (const ef of r.efeitos) if (ef.tipo === "pergunta" && ef.pergunta) await srv.from("ari_perguntas").insert({ pergunta: ef.pergunta, quem: "Teste no painel", origem: "teste" });
     delete r.efeitos;
     return json(r);
   }
@@ -198,7 +208,19 @@ Deno.serve(async (req) => {
 
   const muda: any = { ultima_msg_em: new Date(base + linhas.length * 10).toISOString(), atualizado_em: new Date().toISOString() };
   for (const ef of r.efeitos) {
+    if (ef.tipo === "dados") {
+      const { tipo: _t, nome, temperatura, ...dados } = ef;
+      if (Object.values(dados).some(Boolean)) await srv.rpc("ari_salvar_cotacao", { p_contato: ct.id, p: dados });
+      if (nome && !ct.nome && !muda.nome) muda.nome = String(nome).slice(0, 80);
+      if (["quente", "morno", "frio"].includes(temperatura)) muda.temperatura = temperatura;
+      continue;
+    }
+    if (ef.tipo === "pergunta") {
+      if (ef.pergunta) await srv.from("ari_perguntas").insert({ contato_id: ct.id, quem: muda.nome || ct.nome || "Cliente", pergunta: ef.pergunta, origem: ct.simulado ? "teste" : "conversa" });
+      continue;
+    }
     if (ef.tipo === "passar") {
+      if (["quente", "morno", "frio"].includes(ef.temperatura)) muda.temperatura = ef.temperatura;
       muda.estado = "passado"; if (ef.resumo) muda.resumo = String(ef.resumo).slice(0, 1000); if (ef.nome && !ct.nome) muda.nome = String(ef.nome).slice(0, 80);
       add({ direcao: "int", autor: "sistema", tipo: "outro", texto: "O Ari passou a conversa para você" + (ef.observacoes ? " (" + ef.observacoes + ")" : "") + ". Na conexão real, o lead entraria no Funil e você receberia uma notificação.", status: "interna" });
     } else if (ef.tipo === "avisar") {
