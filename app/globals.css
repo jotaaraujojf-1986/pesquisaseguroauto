@@ -783,3 +783,18 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 .eq-t{display:flex;flex-direction:column;gap:2px;margin-bottom:6px}
 .eq-it{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);flex-wrap:wrap}
 .eq-ac{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+/* Prospecção de parceiros */
+.pr-item{display:block;cursor:pointer;font:inherit;color:inherit}
+.pr-st{display:inline-block;font-size:12px;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--bg);color:var(--muted)}
+.pr-interessado{background:var(--gold-soft);color:var(--gold)}
+.pr-parceiro{background:var(--accent-soft);color:var(--accent)}
+.pr-visitado{background:var(--warm-soft);color:var(--warm)}
+.pr-recusou,.pr-inexistente{background:var(--bad-soft);color:var(--bad)}
+.pr-linha{display:flex;align-items:flex-start;justify-content:space-between;position:relative;margin:6px 0 12px;padding:0 4px}
+.pr-linha::before{content:"";position:absolute;left:8%;right:8%;top:24px;height:6px;border-radius:3px;background:linear-gradient(90deg,#9aa0aa,#1f5cff 34%,#ffb000 67%,#0a9d58)}
+.pr-est{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
+.pr-bola{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;background:var(--card);border:5px solid var(--c);color:var(--ink)}
+.pr-nome{font-size:13px;font-weight:600;text-align:center}
+.pr-e-a_visitar{--c:#9aa0aa}.pr-e-visitado{--c:#1f5cff}.pr-e-interessado{--c:#ffb000}.pr-e-parceiro{--c:#0a9d58}
+.pr-est.on .pr-bola{background:var(--c);color:#fff;box-shadow:0 0 0 3px var(--accent-soft)}
