@@ -798,3 +798,9 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 .pr-nome{font-size:13px;font-weight:600;text-align:center}
 .pr-e-a_visitar{--c:#9aa0aa}.pr-e-visitado{--c:#1f5cff}.pr-e-interessado{--c:#ffb000}.pr-e-parceiro{--c:#0a9d58}
 .pr-est.on .pr-bola{background:var(--c);color:#fff;box-shadow:0 0 0 3px var(--accent-soft)}
+.pr-linha{display:flex;align-items:flex-start;padding:6px 2px 0}
+.pr-est{flex:none;display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;width:64px}
+.pr-bola{width:50px;height:50px;border-radius:50%;border:5px solid var(--c);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;background:var(--card);transition:background .15s}
+.pr-est.on .pr-bola{background:var(--c);color:#fff}
+.pr-nome{font-size:12px;font-weight:600;text-align:center;line-height:1.2}
+.pr-liga{flex:1;height:6px;margin-top:22px;background:linear-gradient(90deg,var(--a),var(--b));min-width:8px}
