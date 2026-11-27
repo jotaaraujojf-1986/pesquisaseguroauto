@@ -783,3 +783,11 @@ body.ar-fit .ar-vazia{min-height:0;overflow:hidden}
 .eq-t{display:flex;flex-direction:column;gap:2px;margin-bottom:6px}
 .eq-it{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);flex-wrap:wrap}
 .eq-ac{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+/* Prospecção de parceiros */
+.pr-item{display:block;cursor:pointer;font:inherit;color:inherit}
+.pr-st{display:inline-block;font-size:12px;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--bg);color:var(--muted)}
+.pr-interessado{background:var(--gold-soft);color:var(--gold)}
+.pr-parceiro{background:var(--accent-soft);color:var(--accent)}
+.pr-visitado{background:var(--warm-soft);color:var(--warm)}
+.pr-recusou,.pr-inexistente{background:var(--bad-soft);color:var(--bad)}
